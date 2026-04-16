@@ -1,13 +1,15 @@
 const express = require('express');
 
-const books = require('./components/books/books-route');
-const users = require('./components/users/users-route');
+const usersRoute = require('./components/users/users-route');
+const gachaRoute = require('./components/gacha/gacha-route');
+const prizesRoute = require('./components/prizes/prize-route');
 
 module.exports = () => {
-  const app = express.Router();
+  const router = express.Router();
 
-  books(app);
-  users(app);
+  usersRoute(router);
+  gachaRoute(router);
+  prizesRoute(router); // Tambahkan ini juga
 
-  return app;
+  return router;
 };
