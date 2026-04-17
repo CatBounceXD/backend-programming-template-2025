@@ -5,7 +5,9 @@ async function roll(req, res, next) {
     const { email, name } = req.body;
 
     if (!email || !name)
-      return res.status(400).json({ error: 'Email dan nama wajib disertakan!' });
+      return res
+        .status(400)
+        .json({ error: 'Email dan nama wajib disertakan!' });
 
     const result = await gachaService.rollGacha(email, name);
 
