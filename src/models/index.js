@@ -5,17 +5,14 @@ const mongoose = require('mongoose');
 const config = require('../core/config');
 const logger = require('../core/logger')('app');
 
-// Pastikan config.database ada untuk menghindari error 'undefined'
 if (!config.database || !config.database.connection) {
   logger.fatal('Database configuration is missing in core/config.js');
   process.exit(1);
 }
 
-// Logika penggabungan URL yang aman untuk format Shard/Standard
 const rawConnection = config.database.connection;
 const dbName = config.database.name;
 
-// Jika URL sudah punya nama DB di tengahnya, kita bersihkan dulu agar tidak double
 const baseUri = rawConnection.includes('.net:27017/')
   ? `${rawConnection.split('.net:27017/')[0]}.net:27017/`
   : rawConnection;
@@ -24,7 +21,6 @@ const dbUri = baseUri.endsWith('/')
   ? `${baseUri}${dbName}`
   : `${baseUri}/${dbName}`;
 
-// Tambahkan opsi koneksi agar stabil di jaringan kampus
 mongoose
   .connect(dbUri, {
     ssl: true,
@@ -44,7 +40,6 @@ const dbExports = { db };
 
 const basename = path.basename(__filename);
 
-// Otomatis membaca semua file model di folder ini
 fs.readdirSync(__dirname)
   .filter(
     (file) =>

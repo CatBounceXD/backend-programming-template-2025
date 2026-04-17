@@ -9,7 +9,7 @@ module.exports = () => {
 
   usersRoute(router);
   gachaRoute(router);
-  prizesRoute(router); // Tambahkan ini juga
+  prizesRoute(router);
 
   return router;
 };

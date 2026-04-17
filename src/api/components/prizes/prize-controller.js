@@ -24,7 +24,4 @@ async function getWinners(req, res, next) {
   }
 }
 
-module.exports = {
-  getQuota,
-  getWinners,
-};
+module.exports = { getQuota, getWinners };

@@ -1,18 +1,40 @@
-# Backend Programming Template (2025)
+# Quiz Backend Programming - Gacha API
 
-## Development Setup
+Aplikasi backend API untuk sistem undian (Gacha) berbasis probabilitas berbobot (Weighted Probability). Setiap user memiliki limit gacha maksimal 5 kali per hari, dan sistem otomatis menjaga agar pemenang tidak melebihi kuota maksimal setiap hadiah.
 
-1. Fork and clone this repository to your local computer.
-2. Open the project using VS Code.
-3. Install the recommended VS Code extensions: `ESLint` and `Prettier`.
-4. Copy and rename `.env.example` to `.env`. Open `.env` and change the database connection string.
-5. Run `npm install` to install the project dependencies.
-6. Run `npm run dev` to start the dev server.
-7. Test the endpoints in the API client app.
+## Preparation
+1. Clone / download repository ini.
+2. Ketik `npm install`
+3. Ubah `.env` agar dapat connect ke MongoDB / gunakan milik saya
+4. Jalankan server menggunakan dengan mengetik `npm run dev` atau `node src/index.js`.
 
-## Add New API Endpoints
+---
 
-1. Create a new database schema in `./src/models`.
-2. Create a new folder in `./src/api/components` (if needed). Remember to separate your codes to repositories, services, controllers, and routes.
-3. Add the new route in `./src/api/routes.js`.
-4. Test your new endpoints in the API client app.
+## Dokumentasi
+Berikut adalah daftar endpoint yang tersedia
+
+### 1. Melakukan Gacha
+Endpoint ini digunakan oleh user untuk memutar gacha. Maksimal 5 kali per hari per email.
+* **Method:** `POST`
+* **URL:** `/api/gacha`
+* **Body Request (JSON):**
+  ```json
+  {
+    "email": "string (wajib)",
+    "name": "string (wajib)"
+  }
+
+### 2. Melihat History Gacha
+Endpoint ini menampilkan daftar riwayat gacha milik seorang user beserta status dan waktu pelaksanaannya.
+* **Method:** `GET`
+* **URL:** `/api/gacha/history?email=budi@example.com`
+
+### 3. Cek Sisa Kuota Hadiah
+Endpoint ini menampilkan daftar seluruh hadiah yang tersedia, kuota maksimal, dan sisa kuota saat ini.
+* **Method:** `GET`
+* **URL:** `/api/prizes/quota`
+
+### 4. Winner List
+Endpoint ini menampilkan daftar pemenang yang dikelompokkan berdasarkan hadiah. Nama pemenang akan disensor secara acak untuk privasi (contoh: J*** *oe)
+* **Method:** `GET`
+* **URL:** `/api/prizes/winners`
