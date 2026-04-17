@@ -1,6 +1,6 @@
 # Quiz Backend Programming - Gacha API
+### 535250154 - Steven Pratama
 
-535250154 - Steven Pratama
 Aplikasi backend API untuk sistem undian (Gacha) berbasis probabilitas berbobot (Weighted Probability). Setiap user memiliki limit gacha maksimal 5 kali per hari, dan sistem otomatis menjaga agar pemenang tidak melebihi kuota maksimal setiap hadiah.
 
 ## Preparation
